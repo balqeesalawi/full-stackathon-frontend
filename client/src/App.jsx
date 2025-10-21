@@ -1,8 +1,12 @@
+
+import PlayerForm from "./pages/PlayerForm"
+
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import Home from './pages/Home'
 import Welcome from './pages/Welcome'
 import Header from './components/Header'
+
 
 const App = () => {
   return (
