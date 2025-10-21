@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react"
-import Header from "../components/Header"
-import axios from "axios"
+import { useEffect, useState } from 'react'
+import Header from '../components/Header'
+import axios from 'axios'
 
 const Home = () => {
   const [games, setGames] = useState([])
 
   useEffect(() => {
     const getGames = async () => {
-      const response = await axios.get("http://localhost:3000/games")
+      const response = await axios.get('http://localhost:3000/games')
       setGames(response.data)
     }
 
@@ -19,8 +19,11 @@ const Home = () => {
       <Header />
 
       {games.map((game) => (
-        <div>
+        <div key={game.id}>
           <h1>{game.name}</h1>
+          <p>Code: {game.code}</p>
+          <p>Points: {game.points ?? 0}</p>
+          {game.img && <img src={game.img} alt={game.name} />}
         </div>
       ))}
     </div>
