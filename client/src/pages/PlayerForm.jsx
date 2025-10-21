@@ -2,7 +2,7 @@ import axios from "axios"
 import { useState } from "react"
 import Header from "../components/Header"
 
-const PlayerForm = ({ players, setPlayers }) => {
+const PlayerForm = ({ setPlayer }) => {
   const initialState = {
     name: "",
     phone: "",
@@ -17,7 +17,7 @@ const PlayerForm = ({ players, setPlayers }) => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     const response = await axios.post("http://localhost:3000/player", formValue)
-    console.log(response.data)
+    setPlayer(response.data)
     setFormValue(initialState)
   }
   return (
