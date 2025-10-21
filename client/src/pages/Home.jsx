@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react"
-import axios from "axios"
-import { Link } from "react-router-dom"
+
+
 import PlayerForm from "./PlayerForm"
+import { useEffect, useState } from 'react'
+import Header from '../components/Header'
+import axios from 'axios'
+
 
 const Home = () => {
   const [games, setGames] = useState([])
@@ -9,7 +12,7 @@ const Home = () => {
 
   useEffect(() => {
     const getGames = async () => {
-      const response = await axios.get("http://localhost:3000/games")
+      const response = await axios.get('http://localhost:3000/games')
       setGames(response.data)
     }
 
@@ -29,7 +32,14 @@ const Home = () => {
 
   return (
     <div>
-      <PlayerForm players={players} setPlayers={setPlayers} />
+    
+      <Header />
+    <PlayerForm players={players} setPlayers={setPlayers} />
+      {games.map((game) => (
+        <div>
+          <h1>{game.name}</h1>
+        </div>
+      ))}
     </div>
   )
 }
