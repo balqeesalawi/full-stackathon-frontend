@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
+import { Link } from "react-router-dom"
+import PlayerForm from "./PlayerForm"
 
 const Home = () => {
   const [games, setGames] = useState([])
+  const [players, setPlayers] = useState([])
 
   useEffect(() => {
     const getGames = async () => {
@@ -13,9 +16,20 @@ const Home = () => {
     getGames()
   }, [])
 
+  const getPlayers = async () => {
+    try {
+      let response = await axios.get("http://localhost:3000/players")
+      setPlayers(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  getPlayers()
+
   return (
     <div>
-      <h1>Hello</h1>
+      <PlayerForm players={players} setPlayers={setPlayers} />
     </div>
   )
 }
