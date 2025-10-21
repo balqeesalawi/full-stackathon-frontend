@@ -1,10 +1,8 @@
-import PlayerForm from "./pages/PlayerForm"
-
+import Player from "./pages/Player"
 import { Routes, Route } from "react-router-dom"
 import "./App.css"
 import Home from "./pages/Home"
 import Welcome from "./pages/Welcome"
-import Header from "./components/Header"
 
 const App = () => {
   return (
@@ -13,7 +11,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/playerForm" element={<PlayerForm />} />
+
+          <Route path="/player" element={<Player />} />
         </Routes>
       </main>
     </div>
