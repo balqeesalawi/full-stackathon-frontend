@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
+import Header from "../components/Header"
 
 const PlayerForm = ({ players, setPlayers }) => {
   const initialState = {
@@ -20,25 +21,28 @@ const PlayerForm = ({ players, setPlayers }) => {
     setFormValue(initialState)
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="name">Name</label>
-      <input
-        type="text"
-        name="name"
-        value={formValue.name}
-        onChange={handleChange}
-      />
+    <div>
+      <Header />
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="name">Name:</label>
+        <input
+          type="text"
+          name="name"
+          value={formValue.name}
+          onChange={handleChange}
+        />
 
-      <label htmlFor="phone"></label>
-      <input
-        type="text"
-        name="phone"
-        value={formValue.phone}
-        onChange={handleChange}
-      />
+        <label htmlFor="phone">Phone:</label>
+        <input
+          type="text"
+          name="phone"
+          value={formValue.phone}
+          onChange={handleChange}
+        />
 
-      <button type="submit">Submit</button>
-    </form>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   )
 }
 
