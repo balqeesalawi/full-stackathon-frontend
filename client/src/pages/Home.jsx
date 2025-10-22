@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react'
-import Header from '../components/Header'
-import axios from 'axios'
+import { useEffect, useState } from "react"
+import Header from "../components/Header"
+import axios from "axios"
+import { Link } from "react-router-dom"
 
-const Home = () => {
+const Home = ({ player }) => {
   const [games, setGames] = useState([])
 
   useEffect(() => {
     const getGames = async () => {
-      const response = await axios.get('http://localhost:3000/games')
+      const response = await axios.get("http://localhost:3000/games")
       setGames(response.data)
     }
 
@@ -15,18 +16,21 @@ const Home = () => {
   }, [])
 
   return (
-    <div>
-      <Header />
-
-      {games.map((game) => (
-        <div key={game.id}>
-          <h1>{game.name}</h1>
-          <p>Code: {game.code}</p>
-          <p>Points: {game.points ?? 0}</p>
-          {game.img && <img src={game.img} alt={game.name} />}
-        </div>
-      ))}
-    </div>
+    <>
+      <Header player={player} />
+      <div className="home-page">
+        {games.map((game) => (
+          <Link to={`/games/${game._id}`}>
+            <div key={game.id} className="game-card">
+              <h1>{game.name}</h1>
+              <div className="home-img-container">
+                {game.img && <img src={game.img} alt={game.name} />}
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </>
   )
 }
 

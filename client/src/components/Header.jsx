@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom"
 
-const Header = () => {
+const Header = ({ player }) => {
   return (
     <header>
       <nav>
         <Link to="/home">Home</Link>
-        <Link to="/Player">Player</Link>
+        {player ? <Link to={`/player/${player._id}`}>Player</Link> : null}
       </nav>
     </header>
   )

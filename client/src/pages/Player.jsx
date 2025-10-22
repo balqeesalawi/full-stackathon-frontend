@@ -1,46 +1,32 @@
-import { useEffect, useState } from "react"
 import axios from "axios"
-import PlayerForm from "./PlayerForm"
 import Header from "../components/Header"
 import { useNavigate } from "react-router-dom"
 
-const Player = () => {
+const Player = ({ player, setPlayer }) => {
   let navigate = useNavigate()
 
-  const [player, setPlayer] = useState(() => {
-    const savedPlayer = localStorage.getItem("player")
-    return savedPlayer ? JSON.parse(savedPlayer) : null
-  })
-
-  // Save to localStorage whenever player changes
-  useEffect(() => {
-    if (player) {
-      localStorage.setItem("player", JSON.stringify(player))
-    }
-  }, [player])
-
-  const handleReset = () => {
+  const handleReset = async () => {
+    await axios.delete(`http://localhost:3000/player/${player._id}`)
     setPlayer(null)
-    localStorage.removeItem("player")
     navigate("/")
   }
 
-  return (
-    <div>
-      {player ? (
-        <div className="mt-4">
-          <Header />
-          <h2>Player Created:</h2>
-          <p>Name: {player.name}</p>
-          <p>Phone: {player.phone}</p>
-          <p>Points: {player.points}</p>
-          <button onClick={handleReset}>Leave</button>
+  return player ? (
+    <div className="player-page">
+      {
+        <div>
+          <Header player={player} />
+          <div className="player-info">
+            <h2>Player Information</h2>
+            <p>Name: {player.name}</p>
+            <p>Phone: {player.phone}</p>
+            <p>Points: {player.points}</p>
+            <button onClick={handleReset}>Leave</button>
+          </div>
         </div>
-      ) : (
-        <PlayerForm setPlayer={setPlayer} />
-      )}
+      }
     </div>
-  )
+  ) : null
 }
 
 export default Player

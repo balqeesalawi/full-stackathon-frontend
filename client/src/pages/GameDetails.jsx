@@ -1,43 +1,76 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
-import { useParams } from 'react-router-dom'
-import Header from '../components/Header'
+import { useEffect, useState } from "react"
+import Header from "../components/Header"
+import axios from "axios"
+import { useParams } from "react-router-dom"
 
-const GameDetails = () => {
+const GameDetails = ({ player, setPlayer }) => {
   const { gameId } = useParams()
-  const [game, setGame] = useState(null)
+  const initialState = {
+    code: "",
+  }
+
+  const [formValue, setFormValue] = useState(initialState)
+  const [game, setGame] = useState([])
 
   useEffect(() => {
-    const fetchGame = async () => {
-      try {
-        const response = await axios.get('http://localhost:3000/games')
-        const game = response.data.find((g) => g._id === gameId)
-
-        setGame(game)
-      } catch (err) {
-        console.error(err)
-      }
+    const getGame = async () => {
+      const response = await axios.get(`http://localhost:3000/games/${gameId}`)
+      setGame(response.data)
     }
-    fetchGame()
-  }, [gameId])
-  if (!game) return <p>Loading</p>
+
+    getGame()
+  }, [])
+
+  const handleChange = (event) => {
+    setFormValue({ ...formValue, [event.target.name]: event.target.value })
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    if (formValue.code === game.code) {
+      player.points += game.points
+      console.log(player)
+
+      await axios.put(`http://localhost:3000/player/${player._id}`, {
+        points: player.points,
+      })
+      alert("correct")
+    } else {
+      setFormValue(initialState)
+      alert("not correct")
+    }
+  }
 
   return (
-    <div>
-      <Header />
-      <div className="game-content">
-        <section className="image-container">
-          <div>{game.img && <img src={game.img} alt={game.name} />}</div>
-        </section>
-        <section className="details">
-          <div>
+    <>
+      <Header player={player} />
+      <div>
+        <div className="game-page">
+          <section className="image-container">
+            <img src={game.img} alt={game.name} />
+          </section>
+
+          <section className="details">
             <h3>{game.name}</h3>
-            <p>Code: {game.code}</p>
-            <p>Points: {game.points ?? 0}</p>
-          </div>
-        </section>
+            <p>Game Points: {game.points} </p>
+            <p>Your Points:{player.points}</p>
+
+            <form onSubmit={handleSubmit}>
+              <label htmlFor="code">Code:</label>
+              <input
+                type="text"
+                name="code"
+                value={formValue.code}
+                onChange={handleChange}
+                required
+              />
+              <button type="submit">Add Points</button>
+            </form>
+          </section>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
+
 export default GameDetails
