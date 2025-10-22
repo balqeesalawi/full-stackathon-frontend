@@ -2,9 +2,13 @@ import { Link } from "react-router-dom"
 
 const Welcome = () => {
   return (
-    <div>
-      <h1>Welcome</h1>
-      <Link to="/Player">Player</Link>
+    <div className="welcome-page">
+      <div className="header">
+        <h1>Welcome</h1>
+      </div>
+      <div className="start">
+        <Link to="/player-form">Start</Link>
+      </div>
     </div>
   )
 }
