@@ -53,7 +53,6 @@ const GameDetails = ({ player, setPlayer }) => {
           <section className="details">
             <h3>{game.name}</h3>
             <p>Game Points: {game.points} </p>
-            <p>Your Points:{player.points}</p>
 
             <form onSubmit={handleSubmit}>
               <label htmlFor="code">Code:</label>
