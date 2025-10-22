@@ -1,16 +1,58 @@
-# React + Vite
+![HomePage]()
+# Park Points
+## Date: 20/10/2025
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### By:
+### | [balqees](https://github.com/balqeesalawi)
+### | [naser](https://github.com/envwx)
+***
+## ERD
+### | ![ERD](./public/ERD.png)
+### | [Figma Link](https://www.figma.com/design/yj28ybIrX5at2NiG4nmslp/Untitled?node-id=1-2&p=f&t=Yi9ns33k8fgLVimz-0)
+***
+### ***Description***
 
-Currently, two official plugins are available:
+#### park Points, a website based off a park theme where you can explore a lot of fun games, earn points and can stack them up so by the end of the day you can take all of your points and trade them for cool prizes!
+***
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### ***Technologies used in our project***
+* javascript
+* vite
+* html
+* JSX
+* CSS
+* Routes
+* controllers
+* modules
+* APIs
+* MongooseDB
+* axios
+* react
+* react-dom
+* react-router-dom
+* insomnia
 
-## React Compiler
+***
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+# Featuring in the project
 
-## Expanding the ESLint configuration
+* Games list
+* home page
+* player page
+* player points
+* welcome page
+* game details
+* sign up with phone number and user
+***
+# Unresolved problems
+* not yet detected
+***
+## ***Project Preview***
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## park Points, a website based off a park theme where you can explore a lot of fun games, earn points and can stack them up so by the end of the day you can take all of your points and trade them for cool prizes!
+
+![HomePage]()
+***
+![SignInPage]()
+***
+![profilePage]()
